@@ -1,0 +1,53 @@
+#plottting ORs and #RiskAlleles
+BelgianCohort=read.csv2("BelgianCohort.csv")
+colnames(BelgianCohort)
+Trial=BelgianCohort$APOE_rs429358&BelgianCohort$ABCA7_rs12151021
+Trial=table(BelgianCohort$ABCA7_rs12151021,BelgianCohort$APOE_rs429358,BelgianCohort$Phenotype)
+Trial
+class(BelgianCohort$APOE_rs429358)
+Trial
+OR_BIN1_RHOH_USP6NL_PLEKHA1_DOC2A=c(1.1985,0.8343,1.4544,1.0599,1.1190,1.0760,1.1158,1.2378,1.2013,3.2100,6.0020)
+OR_BIN1_RHOH_USP6NL_PLEKHA1_DOC2A
+RiskAlleles_BIN1_RHOH_USP6NL_PLEKHA1_DOC2A=c(0,1,2,3,4,5,6,7,8,9,10)
+plot(y=OR_BIN1_RHOH_USP6NL_PLEKHA1_DOC2A,x=RiskAlleles_BIN1_RHOH_USP6NL_PLEKHA1_DOC2A, xlabel="Risk Alleles", ylabel="OR")
+BetaCoeff=log(OR_BIN1_RHOH_USP6NL_PLEKHA1_DOC2A)
+plot(x=BetaCoeff,xlabel="Beta",y=RiskAlleles_BIN1_RHOH_USP6NL_PLEKHA1_DOC2A,ylabel="Risk Alleles")
+plot(x=RiskAlleles_BIN1_RHOH_USP6NL_PLEKHA1_DOC2A,y=BetaCoeff,xlab="Minimum Number of Risk Alleles", cex=1.5, ylab="Beta Coefficient", col="orange", pch=16, main = "BIN1 RHOH USP6NL PLEKHA1 DOC2A")
+abline(lm(OR_BIN1_RHOH_USP6NL_PLEKHA1_DOC2A~RiskAlleles_BIN1_RHOH_USP6NL_PLEKHA1_DOC2A))
+lm(OR_BIN1_RHOH_USP6NL_PLEKHA1_DOC2A~RiskAlleles_BIN1_RHOH_USP6NL_PLEKHA1_DOC2A)
+RA_BIN1_CLNK_PTK2B_USP6NL=c(1.1310,0.9270,1.6478,2,8064)
+length(BetaCoeff)
+OR_BIN1_CLNK_PTK2B_USP6NL=c(0.8841,1.1310,0.9270,1.1479,1.3168,1.4724,1.6478,2.8064)
+length(OR_BIN1_CLNK_PTK2B_USP6NL)
+RA_BIN1_CLNK_PTK2B_USP6NL=c(0,1,2,3,4,5,6,7)
+BC_BIN1_CLNK_PTK2B_USP6NL=log(OR_BIN1_CLNK_PTK2B_USP6NL)
+plot(x=RA_BIN1_CLNK_PTK2B_USP6NL,xlab="Minimum Number Risk Alleles", ylab="Beta Coefficient", y=BC_BIN1_CLNK_PTK2B_USP6NL,cex=1.5, col="orange", pch=16,main="BIN1 CLNK PTK2B USP6NL")
+abline(lm(RA_BIN1_CLNK_PTK2B_USP6NL~BC_BIN1_CLNK_PTK2B_USP6NL))
+lm(RA_BIN1_CLNK_PTK2B_USP6NL~BC_BIN1_CLNK_PTK2B_USP6NL)
+trial=c(0,1,2,3,4,5,6,7)
+trial1=c(0.8841, 1.1103, 0.8039, 0.8485, 1.0987, 1.3580, 1.5577, 2.8064)
+plot(x=trial, xlab="Number of Risk Alleles", y=log(trial1), ylab="Beta Coefficient", cex=1.5, pch=16, col= "orange", main= "BIN1 CLNK PTK2B USP6NL")
+abline(lm(trial~trial1))
+RA_APOE_ABCA7=c(0,1,2,3,4)
+OR_APOE_ABCA7=c(0.4530, 0.8901, 1.7593, 3.4181, 20.6438)
+plot(x=RA_APOE_ABCA7, xlab="Number of Risk Alleles", y=log(OR_APOE_ABCA7), ylab="Beta Coefficient", cex=1.5, pch=16, col="orange", main="APOE ABCA7")
+RA_1_7=c(1,2,3,4,5,6,7,8,9,10,11,12)
+OR_1_7=c(0.3984, 1.2013, 0.8527, 0.9204, 0.9068, 0.9409, 1.0071, 1.1432, 1.2459, 1.7187, 4.2125, 6.0020)
+plot(x=RA_1_7, xlab="Number of Risk Alleles", y=log(OR_1_7), ylab="Beta Coefficient", main="BIN1, CLNK, PTK2B, USP6NL, RHOH, DOC2A and PLEKHA1", cex=1.5, pch=16, col="orange")
+RA_WDR12_HS3_DOC2A_ACE=c(0,1,2,3,4,5,6,7,8)
+OR_WDR12_HS3_DOC2A_ACE=c(0,0,0.6882, 0.8048, 0.9653,0.8853, 1.1731, 1.3811, 2.4198)
+plot(x=RA_WDR12_HS3_DOC2A_ACE, xlab="Number of Risk Alleles", y=log(OR_WDR12_HS3_DOC2A_ACE), ylab="Beta Coefficient", col="orange", pch=16,cex=1.5,main="WDR12, DOC2A, ACE and HS3ST5")
+RA_BIN1_MS4_SPI1=c(0,1,2,3,4,5,6)
+OR_BIN1_MS4_SPI1=c(0,1.2590, 1.3585, 1.4447, 1.2427, 1.8058, 1.5041)
+plot(x=RA_BIN1_MS4_SPI1, xlab="Number of Risk Alleles", y=log(OR_BIN1_MS4_SPI1), ylab="Beta Coefficient", col="orange", pch=16,cex=1.5,main="BIN1, MS4A4A and SPI1")
+
+RA_CR1_DOC2A_PTK2B=c(0,1,2,3,4,5,6)
+OR_CR1_DOC2A_PTK2B=c(0.6985, 0.6674, 0.9388, 1.1586, 1.3683, 1.7549, 3.6078)
+
+RA_IGH_APOE_ADAMTS1=c(0,1,2,3,4,5,6)
+OR_IGH_APOE_ADAMTS1=c(0.4910468, 0.653121888, 0.751546773, 1.03829425, 2.507753101, 2.400324035, 10.8212974)
+plot(x=RA_IGH_APOE_ADAMTS1, xlab="Number of Risk Alleles", y=log(OR_IGH_APOE_ADAMTS1), ylab="Beta Coefficient", col="orange", pch=16,cex=1.5,main="IGHcluster, APOE and ADAMTS1")
+
+RiskAllelesBelgiancohort=c(60:93,98)
+RiskAllelesBelgiancohort
+ORBelgianCohort=c(3.598290598, 0, 1.198535395, 0,0.199077841,0.297881011, 0.397006803,0.296160131,0.626708872, 0.390539054,0.515760355,0.657407407,0.547656689, 0.578992314,0.836044521,0.996527067, 0.798709889, 0.850120826,1.083720369,0.955360281, 1.244459513,1.874624152,1.211072664,1.823801874,1.903995685,1.823677582,2.932663317,2.534382767,1.420706656,1.801470588,2.408196721,2.401305057,1.198535395,20.50716332,3.598290598)
